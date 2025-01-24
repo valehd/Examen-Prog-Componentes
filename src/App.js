@@ -17,8 +17,8 @@ function App() {
   ]);
 
   const [carrito, setCarrito] = useState([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);  // Para gestionar el estado de envío
+  const [formSuccess, setFormSuccess] = useState(null);     // Para mostrar mensajes de éxito o error
   const [user, setUser] = useState(null);  // Estado para guardar los datos del usuario autenticado
 
   // Verificar si el usuario está autenticado
@@ -41,8 +41,8 @@ function App() {
 
   // Enviar datos a Firebase
   const handleFormSubmit = async (datosUsuario) => {
-    setIsSubmitting(true);
-    setFormSuccess(null);
+    setIsSubmitting(true);   // Comienza el proceso de envío
+    setFormSuccess(null);    // Limpiar el mensaje anterior
 
     try {
       const pedido = {
@@ -53,13 +53,13 @@ function App() {
 
       await addDoc(collection(db, "pedidos"), pedido);
       setFormSuccess("Pedido enviado correctamente");
-      setCarrito([]);
+      setCarrito([]); // Vaciar el carrito después de enviar el pedido
     } catch (error) {
       console.error("Error al guardar el pedido:", error);
       setFormSuccess("Error al enviar el pedido. Intenta nuevamente.");
     }
 
-    setIsSubmitting(false);
+    setIsSubmitting(false);  // Finaliza el proceso de envío
   };
 
   // Función de inicio de sesión
@@ -161,6 +161,13 @@ function App() {
 
       <h2 className="my-4 text-center">Formulario de compra</h2>
       <Formulario onSubmit={handleFormSubmit} />
+
+      {/* Mostrar el mensaje de éxito o error */}
+      {formSuccess && (
+        <div className={`alert ${formSuccess.includes("Error") ? "alert-danger" : "alert-success"}`}>
+          {formSuccess}
+        </div>
+      )}
 
       <UploadImage />
     </div>
