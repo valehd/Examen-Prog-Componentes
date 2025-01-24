@@ -18,7 +18,7 @@ function App() {
 
   const [carrito, setCarrito] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formSuccess, setFormSuccess] = useState(null);
+  const [formSuccess, setFormSuccess] = useState(null); // Usaremos esta variable para mostrar mensajes
   const [user, setUser] = useState(null); // Estado para guardar los datos del usuario autenticado
 
   // Verificar si el usuario está autenticado
@@ -52,11 +52,11 @@ function App() {
       };
 
       await addDoc(collection(db, "pedidos"), pedido);
-      setFormSuccess("Pedido enviado correctamente");
+      setFormSuccess("Pedido enviado correctamente"); // Mensaje de éxito
       setCarrito([]);
     } catch (error) {
       console.error("Error al guardar el pedido:", error);
-      setFormSuccess("Error al enviar el pedido. Intenta nuevamente.");
+      setFormSuccess("Error al enviar el pedido. Intenta nuevamente."); // Mensaje de error
     }
 
     setIsSubmitting(false); // Indica que el envío ha terminado
@@ -157,6 +157,13 @@ function App() {
             Vaciar Carrito
           </button>
         </>
+      )}
+
+      {/* Mostrar mensajes de éxito o error */}
+      {formSuccess && (
+        <div className={`alert ${formSuccess.includes("Error") ? "alert-danger" : "alert-success"} my-4`}>
+          {formSuccess}
+        </div>
       )}
 
       <h2 className="my-4 text-center">Formulario de compra</h2>
