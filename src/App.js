@@ -17,21 +17,21 @@ function App() {
   ]);
 
   const [carrito, setCarrito] = useState([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);  // Para gestionar el estado de envío
-  const [formSuccess, setFormSuccess] = useState(null);     // Para mostrar mensajes de éxito o error
-  const [user, setUser] = useState(null);  // Estado para guardar los datos del usuario autenticado
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(null);
+  const [user, setUser] = useState(null); // Estado para guardar los datos del usuario autenticado
 
   // Verificar si el usuario está autenticado
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser(user);  // Si el usuario está autenticado, guardar los datos
+        setUser(user); // Si el usuario está autenticado, guardar los datos
       } else {
-        setUser(null);  // Si no está autenticado, poner el estado de usuario en null
+        setUser(null); // Si no está autenticado, poner el estado de usuario en null
       }
     });
 
-    return () => unsubscribe();  // Limpiar el efecto cuando el componente se desmonte
+    return () => unsubscribe(); // Limpiar el efecto cuando el componente se desmonte
   }, []);
 
   // Agregar productos al carrito
@@ -41,8 +41,8 @@ function App() {
 
   // Enviar datos a Firebase
   const handleFormSubmit = async (datosUsuario) => {
-    setIsSubmitting(true);   // Comienza el proceso de envío
-    setFormSuccess(null);    // Limpiar el mensaje anterior
+    setIsSubmitting(true); // Indica que el envío está en curso
+    setFormSuccess(null);
 
     try {
       const pedido = {
@@ -53,13 +53,13 @@ function App() {
 
       await addDoc(collection(db, "pedidos"), pedido);
       setFormSuccess("Pedido enviado correctamente");
-      setCarrito([]); // Vaciar el carrito después de enviar el pedido
+      setCarrito([]);
     } catch (error) {
       console.error("Error al guardar el pedido:", error);
       setFormSuccess("Error al enviar el pedido. Intenta nuevamente.");
     }
 
-    setIsSubmitting(false);  // Finaliza el proceso de envío
+    setIsSubmitting(false); // Indica que el envío ha terminado
   };
 
   // Función de inicio de sesión
@@ -160,14 +160,10 @@ function App() {
       )}
 
       <h2 className="my-4 text-center">Formulario de compra</h2>
-      <Formulario onSubmit={handleFormSubmit} />
-
-      {/* Mostrar el mensaje de éxito o error */}
-      {formSuccess && (
-        <div className={`alert ${formSuccess.includes("Error") ? "alert-danger" : "alert-success"}`}>
-          {formSuccess}
-        </div>
-      )}
+      <Formulario 
+        onSubmit={handleFormSubmit}
+        isSubmitting={isSubmitting} // Pasar el estado al formulario
+      />
 
       <UploadImage />
     </div>
