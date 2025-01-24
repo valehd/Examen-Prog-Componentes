@@ -1,0 +1,132 @@
+/* Estilos generales para la app */
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilos para las imágenes de los productos */
+.card-img-top {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;      /* Asegura que la imagen ocupe todo el ancho del contenedor */
+  max-width: 250px;  /* Limita el tamaño máximo de la imagen */
+  height: auto;      /* Mantiene la proporción original de la imagen */
+  object-fit: contain;  /* Ajusta la imagen sin deformarla */
+  /* Establece un tamaño máximo para evitar que la imagen se haga más grande */
+  max-height: 300px;    /* Limita la altura de la imagen */
+}
+
+/* Estilo para las tarjetas de los productos */
+.card {
+  text-align: center;   /* Centrar el contenido dentro de la tarjeta */
+  margin-bottom: 20px;  /* Espacio debajo de cada tarjeta */
+  border-radius: 10px;  /* Opcional: Agrega bordes redondeados a las tarjetas */
+  /* Establece un tamaño máximo para las tarjetas */
+  width: 250px;         /* Ajusta el tamaño máximo de las tarjetas */
+  height: auto;         /* Mantiene la proporción */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Si tienes un contenedor general para los productos */
+.producto-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;  /* Espacio entre los productos */
+}
+
+
+/* Contenedor del formulario */
+form {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos en una columna */
+  align-items: center; /* Centra los elementos horizontalmente */
+  gap: 15px; /* Espacio entre los campos */
+  max-width: 800px; /* Limita el ancho máximo del formulario */
+  margin: 0 auto; /* Centra el formulario en la página */
+}
+
+/* Campos del formulario */
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  max-width: 500px; /* Establece un ancho máximo mayor */
+  padding: 15px; /* Aumenta el espaciado interno */
+  font-size: 18px; /* Incrementa el tamaño del texto */
+  border: 2px solid #ccc; /* Bordes visibles */
+  border-radius: 5px; /* Bordes redondeados */
+  background-color: #f9f9f9; /* Color de fondo claro */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #007bff; /* Cambia el color del borde al enfocarse */
+  outline: none; /* Elimina el borde adicional */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Agrega un efecto de enfoque */
+}
+
+/* Botón del formulario */
+button {
+  padding: 15px 30px; /* Aumenta el tamaño del botón */
+  font-size: 18px; /* Incrementa el tamaño del texto */
+  background-color: #007bff; /* Color del botón */
+  color: white; /* Texto blanco */
+  border: none; /* Sin bordes */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  transition: background-color 0.3s ease; /* Suaviza el cambio de color al pasar el mouse */
+}
+
+button:hover {
+  background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+}
+
+
+/* Etiquetas del formulario */
+label {
+  font-size: 16px; /* Tamaño del texto */
+  font-weight: bold; /* Hace el texto más llamativo */
+  margin-bottom: 5px; /* Espaciado debajo de la etiqueta */
+  display: block; /* Asegura que las etiquetas estén en una línea separada */
+}
